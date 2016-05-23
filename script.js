@@ -3,12 +3,12 @@ window.onload = function() {
     target: 'map',
     layers: [
       new ol.layer.Tile({
-        source: new ol.source.MapQuest({layer: 'sat'})
+        source: new ol.source.OSM({})
       })
     ],
     view: new ol.View({
-      center: ol.proj.fromLonLat([37.41, 8.82]),
-      zoom: 4
+      center: ol.proj.fromLonLat([21.008333, 52.232222]),
+      zoom: 16
     })
   });
 };
