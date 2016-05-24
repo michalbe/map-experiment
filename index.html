@@ -1,19 +1,32 @@
 <!doctype html>
-<html lang="en">
+<html>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <head>
     <link rel="stylesheet" href="http://openlayers.org/en/v3.16.0/css/ol.css" type="text/css">
+    <title>Glorya - znajdź Syrenkę!</title>
     <style>
       .map {
         height: 400px;
         width: 600px;
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .syrenka {
+        display: inline-block;
+        height: 400px;
+        margin-left: 10px;
       }
     </style>
     <script src="http://openlayers.org/en/v3.16.0/build/ol.js" type="text/javascript"></script>
-    <title>Glorya</title>
   </head>
   <body>
-    <h2></h2>
     <div id="map" class="map"></div>
+    <img src="syrenka.png" class="syrenka">
+    <div>
+      Gdzie znajduje się ta syrenka? Zaznacz na mapie i naciśnij przycisk!
+      <button id="go">Przycisk</button>
+    </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>

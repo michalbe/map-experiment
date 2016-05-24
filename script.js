@@ -1,5 +1,21 @@
 window.onload = function() {
-  var docelowe = [ 2340399.3924174802, 6836386.568032957 ];
+  var distanceBetweenPoints = function(latlng1, latlng2){
+    var line = new ol.geom.LineString([latlng1, latlng2]);
+    return Math.round(line.getLength() * 100) / 100;
+  };
+
+  var formatDistance = function(length) {
+      if (length >= 1000) {
+          length = (Math.round(length / 1000 * 100) / 100) +
+          ' ' + 'km';
+      } else {
+          length = Math.round(length) +
+          ' ' + 'm';
+      }
+      return length;
+  };
+
+  var targetDest = [ 2340431.0421245047, 6836339.105912586 ];
 
   var marker = new ol.Feature({
     geometry: new ol.geom.Point(ol.proj.fromLonLat([0, 0])),
@@ -41,7 +57,16 @@ window.onload = function() {
 
   map.on('click', function(evt) {
     var coordinates = evt.coordinate;
-    // console.log(coordinates);
-    console.log(marker.getGeometry().setCoordinates(coordinates));
+    console.log(coordinates);
+    marker.getGeometry().setCoordinates(coordinates);
+  });
+
+  document.getElementById('go').addEventListener('click', function() {
+    var dist = distanceBetweenPoints(targetDest, marker.getGeometry().getCoordinates());
+    if (dist > 30) {
+      alert('Pudło! Pomyliłeś się o ' + formatDistance(dist));
+    } else {
+      alert('Gratulacje! Znalazłeś syrenkę z dokładnością do ' + formatDistance(dist));
+    }
   });
 };
