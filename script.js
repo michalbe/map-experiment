@@ -1,6 +1,8 @@
 window.onload = function() {
+  var docelowe = [ 2340399.3924174802, 6836386.568032957 ];
+
   var marker = new ol.Feature({
-    geometry: new ol.geom.Point(ol.proj.fromLonLat([21.008333, 52.232222])),
+    geometry: new ol.geom.Point(ol.proj.fromLonLat([0, 0])),
     name: 'Syrenka'
   });
 
@@ -33,7 +35,13 @@ window.onload = function() {
     ],
     view: new ol.View({
       center: ol.proj.fromLonLat([21.008333, 52.232222]),
-      zoom: 16
+      zoom: 15
     })
+  });
+
+  map.on('click', function(evt) {
+    var coordinates = evt.coordinate;
+    // console.log(coordinates);
+    console.log(marker.getGeometry().setCoordinates(coordinates));
   });
 };
